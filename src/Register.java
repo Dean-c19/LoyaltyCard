@@ -34,6 +34,10 @@ public class Register extends HttpServlet {
             out.println("<h3>Passwords do not match! Please try again.</h3>");
             return;
         }
+        else {
+            // select the table to use
+            // add the user to the db with 100 points
+        }
 
     }
 }

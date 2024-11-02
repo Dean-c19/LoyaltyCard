@@ -23,6 +23,15 @@ public class LogIn extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        // querry db for username, and password and points if the user exists
+        // compare password to the user's provided password
+        // if they match, display points, if not display an error
+
+        // e.g select * from members where username = 'username'
+        // compare password to the user's provided password
+        // if it matches, display points
+
+
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 

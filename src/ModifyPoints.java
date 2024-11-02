@@ -28,6 +28,11 @@ public class ModifyPoints extends HttpServlet {
 
         out.println("<h3>Hi, Youve modified your points</h3>");
 
+        // log the user in, query by username to get ther username and password
+        // if the user exists, update the points in the db and display the new number
+        // otherwise display an error
+        // if theres not enough points to apply a negative number, display an error
+
 
     }
 }
