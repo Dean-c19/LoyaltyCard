@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +22,7 @@ public class Register extends HttpServlet {
     public static void main(String[] args) {
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -35,8 +36,27 @@ public class Register extends HttpServlet {
             return;
         }
         else {
-            // select the table to use
-            // add the user to the db with 100 points
+
+            try{
+                // select the table to use
+                String query = "INSERT INTO members (username, password, points) VALUES (?, ?, ?)";
+                // add the user to the db with 100 points
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, username);
+                preparedStatement.setString(2, password);
+                preparedStatement.setInt(3, 100);
+
+                int addMember = preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+
+            out.println("<h3>Thanks for registering!! 100 points have been added</h3>");
+
+
+
+
         }
 
     }
